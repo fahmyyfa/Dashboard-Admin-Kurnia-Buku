@@ -100,9 +100,11 @@ export const Reports: React.FC = () => {
       } else {
         // Fallback Ledger
         setLedger([
-          { date: '2023-10-24T00:00:00Z', description: 'Restock: Kamus Lengkap Bahasa', category: 'INVENTORY', amount: -1250000, status: 'COMPLETED' },
-          { date: '2023-10-23T00:00:00Z', description: 'Bulk Sale: SMA 1 Polman', category: 'SALES', amount: 5400000, status: 'PAID' },
-          { date: '2023-10-22T00:00:00Z', description: 'PLN - Electricity Bill Oct', category: 'UTILITY', amount: -850000, status: 'COMPLETED' },
+          { date: '2023-10-24T08:00:00Z', description: 'Buku Pendidikan Jasmani VII', category: 'SALES', amount: 1250000, status: 'PAID' },
+          { date: '2023-10-23T09:00:00Z', description: 'Pembayaran Listrik & Wifi', category: 'UTILITY', amount: -850000, status: 'COMPLETED' },
+          { date: '2023-10-23T10:00:00Z', description: 'Pengadaan ATK Kantor', category: 'INVENTORY', amount: -2400000, status: 'COMPLETED' },
+          { date: '2023-10-22T08:30:00Z', description: 'Grosir Novel Best Seller', category: 'SALES', amount: 5800000, status: 'PAID' },
+          { date: '2023-10-22T14:00:00Z', description: 'Biaya Maintenance Rak', category: 'MAINTENANCE', amount: -350000, status: 'COMPLETED' },
         ]);
       }
 

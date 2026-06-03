@@ -4,9 +4,10 @@ import { Search, Bell, HelpCircle } from 'lucide-react';
 
 interface HeaderProps {
   activeTab: string;
+  onRestartTour: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ activeTab }) => {
+export const Header: React.FC<HeaderProps> = ({ activeTab, onRestartTour }) => {
   const { profile } = useAuth();
 
   const getSearchPlaceholder = () => {
@@ -88,14 +89,18 @@ export const Header: React.FC<HeaderProps> = ({ activeTab }) => {
           }} />
         </button>
 
-        <button style={{
-          background: 'none',
-          border: 'none',
-          cursor: 'pointer',
-          color: 'var(--text-secondary)',
-          display: 'flex',
-          alignItems: 'center'
-        }}>
+        <button 
+          className="tour-help-btn"
+          onClick={onRestartTour}
+          style={{
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            color: 'var(--text-secondary)',
+            display: 'flex',
+            alignItems: 'center'
+          }}
+        >
           <HelpCircle size={20} />
         </button>
 

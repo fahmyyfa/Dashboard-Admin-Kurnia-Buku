@@ -42,7 +42,13 @@ export const StaffPresence: React.FC = () => {
         .select('*');
 
       if (staffErr) throw staffErr;
-      const activeStaffs = staffData || [];
+      const activeStaffs = staffData && staffData.length > 0 ? staffData : [
+        { id: 'mock-1', full_name: 'Ahmad Fauzi', role: 'staff' },
+        { id: 'mock-2', full_name: 'Siti Aminah', role: 'staff' },
+        { id: 'mock-3', full_name: 'Budi Santoso', role: 'staff' },
+        { id: 'mock-4', full_name: 'Laila Fitri', role: 'staff' },
+        { id: 'mock-5', full_name: 'Rahmat Hidayat', role: 'staff' },
+      ];
       setStaffs(activeStaffs);
 
       // 2. Fetch presences for selected date
@@ -57,7 +63,16 @@ export const StaffPresence: React.FC = () => {
         .lte('check_in', endOfDay);
 
       if (presErr) throw presErr;
-      const activePresences = presenceData || [];
+      let activePresences = presenceData || [];
+      if (activePresences.length === 0 && (!staffData || staffData.length === 0)) {
+        activePresences = [
+          { id: 9001, staff_id: 'mock-1', check_in: `${selectedDate}T08:00:00.000Z`, check_out: `${selectedDate}T17:00:00.000Z`, status: 'Hadir', notes: '' },
+          { id: 9002, staff_id: 'mock-2', check_in: `${selectedDate}T08:15:00.000Z`, check_out: `${selectedDate}T17:00:00.000Z`, status: 'Hadir', notes: '' },
+          { id: 9003, staff_id: 'mock-3', check_in: null, check_out: null, status: 'Izin', notes: 'Urusan Keluarga' },
+          { id: 9004, staff_id: 'mock-4', check_in: `${selectedDate}T07:55:00.000Z`, check_out: `${selectedDate}T17:05:00.000Z`, status: 'Hadir', notes: '' },
+          { id: 9005, staff_id: 'mock-5', check_in: null, check_out: null, status: 'Sakit', notes: 'Surat Keterangan Dokter' },
+        ];
+      }
       setPresences(activePresences);
 
       // 3. Track self presence today

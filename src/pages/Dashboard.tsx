@@ -57,11 +57,11 @@ export const Dashboard: React.FC<DashboardProps> = ({ setActiveTab }) => {
         setTotalIncome(45230000);
         setTotalExpense(12840500);
         setRecentTransactions([
-          { id: 9821, title: 'Buku Pendidikan Jasmani VII', category: 'Penjualan Buku', amount: 1250000, type: 'income', created_at: '2023-10-24T08:00:00Z' },
-          { id: 9820, title: 'Pembayaran Listrik & Wifi', category: 'Operasional', amount: 850000, type: 'expense', created_at: '2023-10-23T09:00:00Z' },
-          { id: 9819, title: 'Pengadaan ATK Kantor', category: 'Inventaris', amount: 2400000, type: 'expense', created_at: '2023-10-23T10:00:00Z' },
-          { id: 9818, title: 'Grosir Novel Best Seller', category: 'Penjualan Buku', amount: 5800000, type: 'income', created_at: '2023-10-22T08:30:00Z' },
-          { id: 9817, title: 'Biaya Maintenance Rak', category: 'Operasional', amount: 350000, type: 'expense', created_at: '2023-10-22T14:00:00Z' },
+          { id: 9821, title: 'Buku Pendidikan Jasmani VII | Grosir SMA 1 Madiun', category: 'Penjualan Buku', amount: 1250000, type: 'income', created_at: '2023-10-24T08:00:00Z' },
+          { id: 9820, title: 'Pembayaran Listrik & Wifi | Tagihan Bulanan Toko', category: 'Operasional', amount: 850000, type: 'expense', created_at: '2023-10-23T09:00:00Z' },
+          { id: 9819, title: 'Pengadaan ATK Kantor | Restock ATK dan Kertas', category: 'Inventaris', amount: 2400000, type: 'expense', created_at: '2023-10-23T10:00:00Z' },
+          { id: 9818, title: 'Grosir Novel Best Seller | Penerbit Gramedia', category: 'Penjualan Buku', amount: 5800000, type: 'income', created_at: '2023-10-22T08:30:00Z' },
+          { id: 9817, title: 'Biaya Maintenance Rak | Perbaikan Lemari Display', category: 'Operasional', amount: 350000, type: 'expense', created_at: '2023-10-22T14:00:00Z' },
         ]);
       }
 
@@ -128,7 +128,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ setActiveTab }) => {
       </div>
 
       {/* Stats row */}
-      <div className="grid grid-cols-3 gap-4" style={{ marginBottom: '2rem' }}>
+      <div className="grid grid-cols-3 gap-4 tour-summary-cards" style={{ marginBottom: '2rem' }}>
         {/* Income Card */}
         <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -190,7 +190,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ setActiveTab }) => {
       {/* Grid of Chart & Sidebar list */}
       <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '2rem' }}>
         {/* Revenue Trend Chart */}
-        <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', minHeight: '380px' }}>
+        <div className="card tour-charts" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', minHeight: '380px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
               <h3 style={{ fontSize: '1.1rem', fontWeight: 700 }}>Revenue Trend (2020 - 2024)</h3>
@@ -221,7 +221,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ setActiveTab }) => {
         </div>
 
         {/* Staff Presence Sidebar Widget */}
-        <div className="card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <div className="card tour-presence-widget" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <div>
             <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.25rem' }}>Staff Presence</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -302,7 +302,12 @@ export const Dashboard: React.FC<DashboardProps> = ({ setActiveTab }) => {
                         year: 'numeric',
                       })}
                     </td>
-                    <td style={{ fontWeight: 700, color: 'var(--text-primary)' }}>{tx.title}</td>
+                    <td>
+                      <div style={{ fontWeight: 700, color: 'var(--text-primary)' }}>{tx.title.split(' | ')[0]}</div>
+                      {tx.title.includes(' | ') && (
+                        <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{tx.title.split(' | ')[1]}</div>
+                      )}
+                    </td>
                     <td>{tx.category || 'General'}</td>
                     <td style={{
                       textAlign: 'right',
